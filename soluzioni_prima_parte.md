@@ -694,8 +694,3 @@ fi
 done
 ```
 
-Convertito con:
-```console
-npm install -g pretty-markdown-pdf
-pretty-md-pdf -i soluzioni_prima_parte.md
-```

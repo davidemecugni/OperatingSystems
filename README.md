@@ -8,3 +8,10 @@ Aggiungere prove passate(preferibilmente parziali e non totali) con la seguente 
 + FCR.sh in blocco di testo bash
 + Tag ossia parole chiave che possono tornare utili per trovare
 quella prova usando CTRL-F durante l'esame
+
+Convertire i file markdown con con:
+
+```console
+npm install -g pretty-markdown-pdf
+pretty-md-pdf -i FILE.md
+```
