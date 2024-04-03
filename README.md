@@ -12,6 +12,7 @@ quella prova usando CTRL-F durante l'esame(es. for, controllo file vuoto, contro
 Convertire i file markdown in pdf prima di pushare con:
 
 ```console
-npm install -g pretty-markdown-pdf
+sudo apt install npm
+sudo npm install -g pretty-markdown-pdf
 pretty-md-pdf -i FILE.md
 ```
