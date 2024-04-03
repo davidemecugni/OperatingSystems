@@ -1,15 +1,15 @@
 # PrimaProvaOS
 
-Aggiungere prove passate(preferibilmente parziali e non totali) con la seguente struttura:
+Aggiungere prove passate(preferibilmente **parziali** e non totali) con la seguente struttura:
 
 + Data gg/mm/yyyy
-+ Descrizione completa con note ed eventuali evidenziazioni del test
++ Descrizione completa con note ed eventuali evidenziazioni del testo
 + FCP.sh in blocco di testo bash
 + FCR.sh in blocco di testo bash
 + Tag ossia parole chiave che possono tornare utili per trovare
-quella prova usando CTRL-F durante l'esame
+quella prova usando CTRL-F durante l'esame(es. for, controllo file vuoto, controllo stretto 2 parametri)
 
-Convertire i file markdown con:
+Convertire i file markdown in pdf prima di pushare con:
 
 ```console
 npm install -g pretty-markdown-pdf
