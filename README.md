@@ -9,7 +9,7 @@ Aggiungere prove passate(preferibilmente **parziali** e non totali) con la segue
 + Tag ossia parole chiave che possono tornare utili per trovare
 quella prova usando CTRL-F durante l'esame(es. for, controllo file vuoto, controllo stretto 2 parametri)
 
-Convertire i file markdown in pdf prima di pushare con:
+L'importante è tenere il markdown aggiornato, si può sempre convertire il .md in PDF con il comando sotto da Linux:
 
 ```console
 sudo apt install npm
