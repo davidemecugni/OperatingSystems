@@ -9,7 +9,7 @@ Aggiungere prove passate(preferibilmente parziali e non totali) con la seguente 
 + Tag ossia parole chiave che possono tornare utili per trovare
 quella prova usando CTRL-F durante l'esame
 
-Convertire i file markdown con con:
+Convertire i file markdown con:
 
 ```console
 npm install -g pretty-markdown-pdf
