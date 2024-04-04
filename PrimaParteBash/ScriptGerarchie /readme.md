@@ -6,6 +6,10 @@ Lo script `create.sh` è uno script di shell che crea una gerarchia di directory
 
 Per utilizzare lo script, eseguire il comando seguente nel terminale:
 
+Se non avete zsh
+```shell
+sudo apt install zsh
+```
 ```shell
     chmod u+x create.sh
 ````
