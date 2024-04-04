@@ -8,8 +8,9 @@ Per utilizzare lo script, eseguire il comando seguente nel terminale:
 
 Se non avete zsh
 ```shell
-sudo apt install zsh
+    sudo apt install zsh
 ```
+
 ```shell
     chmod u+x create.sh
 ````
