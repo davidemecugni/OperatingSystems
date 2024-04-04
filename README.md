@@ -1,5 +1,6 @@
-# PrimaProvaOS
+# Sistemi Operativi
 
+## Prima Parte
 Aggiungere prove passate(preferibilmente **parziali** e non totali) con la seguente struttura:
 
 + Data gg/mm/yyyy
@@ -11,6 +12,10 @@ quella prova usando CTRL-F durante l'esame(es. for, controllo file vuoto, contro
 
 L'importante è tenere il markdown aggiornato, si può sempre convertire il .md in PDF con il comando sotto da Linux:
 
+## Seconda parte
+TBD
+
+### Da .md a .pdf
 ```console
 sudo apt install npm
 sudo npm install -g pretty-markdown-pdf
