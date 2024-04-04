@@ -8,6 +8,13 @@ then
     exit 1
 fi
 
+# Verifica che il primo argomento sia una stringa
+if ! [[ $1 =~ ^[a-zA-Z]+$ ]]
+then
+    echo "Errore: Il primo parametro deve essere una stringa."
+    exit 2
+fi
+
 # Verifica che il secondo argomento sia un numero
 if ! [[ $2 =~ ^[0-9]+$ ]]
 then
@@ -22,12 +29,6 @@ function create_G() {
     then
         echo "Usage: $0 <nome_gerarchia>"
         exit 1
-    fi
-    # Verifica che il primo argomento sia una stringa
-    if ! [[ $1 =~ ^[a-zA-Z]+$ ]]
-    then
-        echo "Errore: Il primo parametro deve essere una stringa."
-        exit 2
     fi
 
     local G=$1
