@@ -42,11 +42,31 @@ function create_G() {
     mkdir $G
 }
 
+function getFileContent() {
+    echo "Vuoi personalizzare il contenuto del file [Si/No]?" 1>&2
+    read risposta < /dev/tty
+
+    case $risposta in
+    s*|S*|y*|Y*)  
+                    echo "Inserisci il contenuto del file:" 1>&2
+                    read content < /dev/tty
+                    echo "Inserisci il numero di linee del file:" 1>&2
+                    read numLinee < /dev/tty;;
+    
+    *)              echo "Di default vengono inserite 5 linee con "Abc123"." 1>&2
+                    content="Abc123"
+                    numLinee=5;;
+    esac
+    contentResult=$content
+    numLineeResult=$numLinee
+}
+
 # Funzione per creare le directory e i file
 function create_directories() {
     local directory=$1
     local num_dirs=$2
     local num_files=$3
+    local lvl=$4
 
     cd $directory
 
@@ -55,18 +75,19 @@ function create_directories() {
     then
         for j in $(seq 1 $num_dirs)
         do
-            mkdir D.$i.$j
+            mkdir D.$lvl.$j
         done
     fi
 
     # Crea i file
     if test $num_files -gt 0
     then
+        getFileContent
         for k in $(seq 1 $num_files)
         do
-            for l in $(seq 1 5)
+            for l in $(seq 1 $numLineeResult)
             do
-                echo "Abc123" >> F$k
+                echo $contentResult >> F.$lvl.$k
             done
         done
     fi
