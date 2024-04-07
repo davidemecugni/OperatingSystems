@@ -1708,7 +1708,7 @@ risultante invocando nuovamente FCR come per la Fase A.
 **NOTA BENE:** FCR dovrà prevedere un parametro ulteriore rispetto a G, F e N per differenziare l'esecuzione
 delle diverse Fasi.
 
-Tag: nome relativo, numero intero, file vuoto, nome assoluto, chiamare FCR 2 volte
+Tag: nome relativo, numero intero, file vuoto, nome assoluto, chiamare FCR 2 volte, tre fasi
 
 ## FCP.sh
 ```bash
