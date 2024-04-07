@@ -254,7 +254,17 @@
     ```bash
     logout
     ```
+
+- echo    
+    Stampa un messaggio sulla shell
     
+    ```bash
+    echo "Hello, World!"
+    ```
+
+    Opzioni:
+    - `-n`: non stampa il carattere di nuova riga alla fine del messaggio(utile per input dall'utente)
+
 - exit
     
     Per uscire dalla shell e interrompere il processo

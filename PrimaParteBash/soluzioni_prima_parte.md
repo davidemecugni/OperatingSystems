@@ -18,7 +18,7 @@ Si riporti il nome assoluto di tali directory sullo standard output. In ogni dir
 OSSERVAZIONE: se per provare la parte shell, si commenta la chiamata alla parte C, ricordarsi di togliere il commento prima
 della consegna!
 
-Tag: tre parametri, 2+1 parametri, intero positivo minore di X, file leggibili non vuoti, file lunghezza zero 0, 
+Tag: tre parametri, 2+1 parametri, intero positivo minore di X, file leggibili non vuoti, file lunghezza zero 0, file allo stesso livello gerarchico
 ## FCP.sh
 ```bash
 #!/bin/bash
@@ -147,12 +147,10 @@ then
 fi
 ```
 # 13/04/2022
-La parte in Shell deve prevedere un numero variabile di parametri Q+1 (con Q maggiore o uguale a 2): 
-- i primo parametro deve essere considerato un numero intero strettamente positivo (X);
-- gli altri Q devono essere nomi assoluti di directory che identificano Q gerarchie (G1, G2, …) all’interno del file
-system. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in Q fasi,
+La parte in Shell deve prevedere un numero variabile di parametri Q+1 (con Q maggiore o uguale a 2): il
+primo parametro deve essere considerato un numero intero strettamente positivo (X), mentre gli altri Q
+devono essere nomi assoluti di directory che identificano Q gerarchie (G1, G2, …) all’interno del file
+system. Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in Q fasi,
 una per ogni gerarchia.
 Il programma, per ognuna delle Q fasi, deve esplorare la gerarchia G corrispondente - tramite un file
 comandi ricorsivo, **FCR.sh** – e deve contare **globalmente** tutti i file leggibili la cui lunghezza in linee sia
@@ -175,7 +173,7 @@ I file **/home/utente/ger1/d2/d3/f8** e **/home/utente/ger2/d21/d32/f82** sono u
 - una variabile di nome F per identificare, via via, i singoli file delle directory esplorate e CANCELLATO(della directory
 selezionata;)
 
-Tag: differenza, multipli file, lunghezza, file uguali, due for, for innestato
+Tag: differenza tra file, multipli file, lunghezza, file uguali, due for, for innestato, lunghezza linee uguale a X, linee, 2 for, diversi file temporanei
 
 ## FCP.sh
 ```bash
@@ -469,11 +467,10 @@ done
 
 # 14/06/2021
 
-La parte in Shell deve prevedere un numero variabile di parametri Q+2 (con Q maggiore o uguale a 2): 
-- i primi Q devono essere nomi assoluti di directory che identificano Q gerarchie (G1, G2, …) all’interno del file system;
-- gli ultimi due parametri devono essere considerati numeri interi strettamente positivi (H e M). 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in Q fasi, una per ogni
+La parte in Shell deve prevedere un numero variabile di parametri Q+2 (con Q maggiore o uguale a 2): i primi Q
+devono essere nomi assoluti di directory che identificano Q gerarchie (G1, G2, …) all’interno del file system,
+mentre gli ultimi due parametri devono essere considerati numeri interi strettamente positivi (H e M). Il
+comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in Q fasi, una per ogni
 gerarchia.
 Il programma, per ognuna delle Q fasi, deve esplorare la gerarchia G corrispondente - tramite un file comandi
 ricorsivo, **FCR.sh** – e deve cercare tutte le directory che contengono un numero strettamente minore di H ma
@@ -484,7 +481,7 @@ Si riporti il nome assoluto di tali directory sullo standard output. In ognuna d
 directory trovate, si deve invocare la parte in C, passando come parametri i nomi dei file trovati (F1, F2, ...) che
 soddisfano la condizione precedente e il numero M.
 
-Tag: Numeri positivi, numero caratteri, lunghezza linee
+Tag: Numeri positivi, numero caratteri, lunghezza linee, 2 numeri, numero strettamente minore, file con 2 caratteri, linee uguali a X
 ## FCP.sh
 
 ```bash
@@ -607,10 +604,9 @@ done
 # 03/06/2020
 
 La parte in Shell deve prevedere un numero variabile di parametri N+1 (con N maggiore o uguale a 2):
-- il primo parametro deve essere considerato un singolo carattere C;
-- gli altri N devono essere nomi assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file system. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per
+il primo parametro deve essere considerato un singolo carattere C, mentre gli altri N devono essere nomi
+assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file system. Il
+comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per
 ogni gerarchia.
 Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file
 comandi ricorsivo, **FCR.sh** - e deve contare globalmente tutte le directory D che hanno le caratteristiche
@@ -629,6 +625,8 @@ anche gli elementi nascosti.
 - una variabile di nome C per il primo parametro;
 - il nome /tmp/nomiAssoluti per il file temporaneo
 - una variabile di nome answer per ricevere la risposta di Elena
+
+Tag: singolo carattere, nome di 3 caratteri, carattere dispari uguale a X, visualizzare contenuto cartella con elementi nascosti
 
 ## FCP.sh
 ```bash
@@ -735,10 +733,9 @@ done
 # 05/04/2019
 
 La parte in Shell deve prevedere un numero variabile di parametri N+1 (con N maggiore o uguale a 2):
-- il primo parametro deve essere considerato un nome relativo semplice F;
-- gli altri N devono essere nomi assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file system. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per
+il primo parametro deve essere considerato un nome relativo semplice F, mentre gli altri N devono essere
+nomi assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file system. Il
+comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per
 ogni gerarchia.
 Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file
 comandi ricorsivo, **FCR.sh** - e deve contare globalmente tutti i file che hanno le caratteristiche di seguito
@@ -755,6 +752,7 @@ lunghezza in linee (entrambe queste informazioni precedentemente salvate):
 numero è corretto, si devono riportare su standard output le prime X linee del file con opportune frasi
 che facciano capire all’utente che cosa si sta visualizzando.
 
+Tag: lunghezza in linee maggiore di X, prime X linee, controllo su numero da utente
 ## FCP.sh
 ```bash
 #!/bin/sh
@@ -873,11 +871,9 @@ done
 # 11/04/2018
 
 La parte in Shell deve prevedere un numero variabile di parametri N+1 (con N maggiore o uguale a 2):
-- il primo parametro deve essere considerato un numero intero Y strettamente positivo;
-- gli altri N devono essere nomi assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file
-system. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi,
+il primo parametro deve essere considerato un numero intero Y strettamente positivo, mentre gli altri N
+devono essere nomi assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file
+system. Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi,
 una per ogni gerarchia.
 Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file
 comandi ricorsivo, **FCR.sh** - e deve contare globalmente tutti i file che saranno creati secondo quanto di
@@ -893,6 +889,8 @@ Al termine di tutte le N fasi, si deve riportare sullo standard output il numero
 totale di file creati globalmente. In seguito, per ogni file creato, si deve riportare sullo standard output il
 suo nome assoluto, e quindi il suo contenuto con opportune frasi che facciano capire all’utente che cosa
 si sta visualizzando.
+
+Tag: creazione file, X riga
 
 ## FCP.sh
 ```bash
@@ -1006,10 +1004,9 @@ done
 # 07/04/2017
 
 La parte in Shell deve prevedere un numero variabile di parametri N+1 (con N maggiore o uguale a 2):
-- il primo parametro deve essere il nome relativo semplice F di un file;
-- gli altri N devono essere nomi assoluti di direttori che identificano N gerarchie (G1, G2, …) all’interno del file system. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per
+il primo parametro deve essere il nome relativo semplice F di un file, mentre gli altri N devono essere
+nomi assoluti di direttori che identificano N gerarchie (G1, G2, …) all’interno del file system. Il
+comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per
 ogni gerarchia.
 Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file
 comandi ricorsivo, **FCR.sh** - e deve contare globalmente tutti i file con nome relativo semplice sorted
@@ -1021,6 +1018,8 @@ Al termine di tutte le N fasi, si deve riportare sullo standard output il numero
 per ogni file creato, si deve riportare sullo standard output il suo nome assoluto, e quindi la prima e
 l'ultima linea del file (esattamente in questo ordine, con opportune frasi che facciano capire all’utente
 che cosa si sta visualizzando).
+
+Tag: file ordinato senza tenere conto di minuscole/maiuscole, prima e ultima linea
 
 ## FCP.sh
 ```bash
@@ -1115,24 +1114,20 @@ done
 
 # 15/04/2016
 
-La parte in Shell deve prevedere un numero variabile di parametri N+1 (N maggiore o uguale a 2): 
-- i primi N parametri devono essere nomi assoluti di directory che identificano N gerarchie (G1, G2, …) all’interno del file
-system; 
-- l’ultimo parametro deve essere considerato un numero intero X strettamente positivo. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per ogni
-gerarchia.
-Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file comandi
-ricorsivo, **FCR.sh** - e devono contare globalmente tutte le directory che soddisfano le seguenti due specifiche: 
-1) devono contenere solo file (e non sotto-directory)
-2) devono contenere solo file la cui lunghezza in linee sia strettamente maggiore di X. 
-
-Al termine di tutte le N fasi, si deve riportare sullo standard output il numero totale
-delle directory trovate globalmente che soddisfano la specifica precedente (directory trovate). 
-
-Inoltre, per ogni directory trovata, si deve riportare sullo standard output il suo nome assoluto, e quindi per ognuno dei file (file
-corrente) in esso contenuto deve essere riportato sullo standard output il suo nome assoluto e contestualmente
-la linea X-esima del file corrente a partire dalla fine del file.
+La parte in Shell deve prevedere un numero variabile di parametri N+1 (N maggiore o uguale a 2): i
+primi N parametri devono essere nomi assoluti di direttori che identificano N gerarchie (G1, G2, …)
+all’interno del file system, mentre l’ultimo parametro deve essere considerato un numero intero X
+strettamente positivo. Il comportamento atteso dal programma, dopo il controllo dei parametri, è
+organizzato in N fasi, una per ogni gerarchia.
+Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file
+comandi ricorsivo, FCR.sh - e devono contare globalmente tutti i direttori che soddisfano le seguenti
+due specifiche: 1) devono contenere solo file (e non sotto-directory) e 2) devono contenere solo file la
+cui lunghezza in linee sia strettamente maggiore di X. Al termine di tutte le N fasi, si deve riportare
+sullo standard output il numero totale di direttori trovati globalmente che soddisfano la specifica
+precedente (direttori trovati). Inoltre, per ogni direttorio trovato, si deve riportare sullo standard output
+il suo nome assoluto, e quindi per ognuno dei file (file corrente) in esso contenuto deve essere
+riportato sullo standard output il suo nome assoluto e contestualmente la linea X-esima del file
+corrente a partire dalla fine del file.
 
 ## FCP.sh
 ```bash
@@ -1271,10 +1266,9 @@ done
 
 # 11/04/2014
 
-La parte in Shell deve prevedere N parametri: (con N maggiore o uguale a 2):
-- devono essere nomi assoluti di direttori che identificano N gerarchie (G1, G2, … GN) all’interno del file system. 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi.
+La parte in Shell deve prevedere N parametri: (con N maggiore o uguale a 2) devono essere nomi assoluti di
+direttori che identificano N gerarchie (G1, G2, … GN) all’interno del file system. Il comportamento atteso dal
+programma, dopo il controllo dei parametri, è organizzato in N fasi.
 Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi specificata - tramite un file comandi
 ricorsivo, **FCR.sh** - e deve contare globalmente per ogni gerarchia Gi tutti i file leggibili che soddisfano la
 seguente specifica: 
@@ -1287,6 +1281,7 @@ inoltre, si deve riportare sullo standard output il nome assoluto di ogni file t
 all’utente un numero X: tale numero deve essere usato per riportare sullo standard output le prime X linee del
 file trovato corrente.
 
+Tag: linee iniziano con carattere, prime X linee, controllo su numero da utente
 ## FCP.sh
 ```bash
 #!/bin/sh
@@ -1406,14 +1401,11 @@ done
 
 # 12/04/2013
 
-La parte in Shell deve prevedere tre parametri: 
-- il primo deve essere il nome assoluto di un direttorio che identifica una gerarchia (G) all’interno del file system;
-- il secondo deve essere una stringa (S);
-- il terzo parametro deve essere considerato un numero intero strettamente positivo (N). 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in due fasi (Fasi A e B).
-
-Il programma nella fase **A** deve esplorare la gerarchia G specificata - tramite un file comandi ricorsivo, **FCR.sh** - e
+La parte in Shell deve prevedere tre parametri: il primo deve essere il nome assoluto di un direttorio che
+identifica una gerarchia (G) all’interno del file system, il secondo deve essere una stringa (S), mentre il terzo
+parametro deve essere considerato un numero intero strettamente positivo (N). Il comportamento atteso dal
+programma, dopo il controllo dei parametri, è organizzato in due fasi (Fasi A e B).
+Il programma nella fase A deve esplorare la gerarchia G specificata - tramite un file comandi ricorsivo, FCR - e
 deve contare globalmente tutti i direttori (inclusa la radice) che contengono almeno un file leggibile il cui nome
 abbia terminazione .S. 
 
@@ -1432,6 +1424,7 @@ LO STUDENTE DEVE RIPORTARE IN MODO CHIARO IN UN COMMENTO QUALE DELLE DUE ALTERNA
 
 (*) Precisazione detta durante lo svolgimento della prova!
 
+Tag: stringa, file terminante per X, prima linea del file
 ## FCP.sh
 ```bash
 #!/bin/sh
@@ -1582,15 +1575,12 @@ Il programma nella fase **A** deve esplorare la gerarchia G specificata - tramit
 deve contare globalmente i livelli di cui è costituita la gerarchia G (inclusa la radice).
 
 Al termine dell’intera esplorazione ricorsiva di G, si deve riportare sullo standard output il numero di livelli
-totali della gerarchia G. Quindi il programma passa nella fase B. 
-
-In questa fase **B**, il programma deve chiedere
+totali della gerarchia G. Quindi il programma passa nella fase B. In questa fase B, il programma deve chiedere
 all’utente un numero pari compreso fra 1 e il numero di livelli totali calcolati nella faseA: quindi si deve
 reinvocare FCR in modo da cercare nella gerarchia G specificata (inclusa la radice) tutti i direttori che si trovano
 al livello corrispondente al numero pari specificato dall’utente e per ognuno di essi si devono visualizzare
 TUTTE le informazioni associate agli elementi presenti esclusi i file nascosti.
-
-**NOTA BENE:** FCR dovrà prevedere dei parametri ulteriori per differenziare l'esecuzione delle diverse Fasi.
+NOTA BENE: FCR dovrà prevedere dei parametri ulteriori per differenziare l'esecuzione delle diverse Fasi.
 
 ## FCP.sh
 ```bash
@@ -1697,12 +1687,10 @@ exit $conta 	#N.B. codice comune a tutte le fasi!
 
 # 29/04/2011
 
-La parte in Shell deve prevedere tre parametri: 
-- il primo deve essere il nome assoluto di un direttorio che identifica una gerarchia (G) all’interno del file system;
-- il secondo parametro deve essere il nome relativo semplice di un file (F);
-- il terzo parametro deve essere considerato un numero intero positivo (N). 
-
-Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in generale in tre fasi (Fasi
+La parte in Shell deve prevedere tre parametri: il primo deve essere il nome assoluto di un direttorio che
+identifica una gerarchia (G) all’interno del file system, il secondo parametro deve essere il nome relativo
+semplice di un file (F), mentre il terzo parametro deve essere considerato un numero intero positivo (N). Il
+comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in generale in tre fasi (Fasi
 A, B e C).
 Il programma deve cercare nella gerarchia G specificata (inclusa la radice) - tramite un file comandi ricorsivo,
 **FCR.sh** - tutti i direttori che contengono un file che ha nome relativo F: si riporti il nome assoluto di tali direttori
@@ -1719,6 +1707,8 @@ risultante invocando nuovamente FCR come per la Fase A.
 
 **NOTA BENE:** FCR dovrà prevedere un parametro ulteriore rispetto a G, F e N per differenziare l'esecuzione
 delle diverse Fasi.
+
+Tag: nome relativo, numero intero, file vuoto, nome assoluto, chiamare FCR 2 volte
 
 ## FCP.sh
 ```bash
@@ -1853,6 +1843,7 @@ In ognuno di tali direttori trovati, si deve invocare la parte in C, passando co
 trovati (F0, F1, ... FN-1) che soddisfano la condizione precedente e il numero intero H. 
 
 Tag: Nome assoluto, nome relativo semplice, numero intero positivo
+
 ## FCP.sh
 ```bash
 #!/bin/sh
