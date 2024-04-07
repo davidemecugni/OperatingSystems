@@ -1263,7 +1263,146 @@ do
 	fi
 done
 ```
+# 17/04/2015
 
+La parte in Shell deve prevedere un numero variabile **N+1 di parametri** (con N maggiore o uguale a 2): 
+- il primo parametro deve essere considerato un **numero intero X strettamente positivo**;
+- gli altri N devono essere **nomi assoluti di directory**che identificano N gerarchie (G1, G2, … GN) all’interno del file system. 
+
+Il comportamento atteso dal programma, dopo il controllo dei parametri, è organizzato in N fasi, una per ogni gerarchia.
+Il programma, per ognuna delle N fasi, deve esplorare la gerarchia Gi corrispondente - tramite un file comandi
+ricorsivo, **FCR.sh** - e deve contare globalmente tutti i file leggibili che soddisfano la seguente specifica: 
+- il contenuto del file deve essere tale per cui almeno X linee terminino con il carattere **‘t’**. 
+
+Al termine di tutte le N fasi, si deve riportare sullo standard output il numero totale di file trovati globalmente che soddisfano la specifica precedente (file trovati); quindi, si deve riportare sullo standard output il nome assoluto di ogni file trovato chiedendo contestualmente all’utente un numero K strettamente positivo e strettamente minore di X: tale numero deve
+essere usato per riportare sullo standard output la linea K-esima del file trovato corrente.
+
+Tag: N fasi, contare globalmente, almeno X linee, linea termina con, chiedi input utente, -esima linea, verifica numero
+
+## FCP.sh
+```bash
+#!/bin/sh
+#Soluzione della Prima Prova in itinere del 17 Aprile 2015
+#versione che usa un file temporaneo e usa FCR.sh per tutte le fasi
+
+#controllo sul numero dei parametri N >= 2 e quindi N+1 >=3
+case $# in
+0|1|2)	echo Errore: numero parametri is $# quindi pochi parametri. Usage is $0 numero dirass1 dirass2 ...
+	exit 1;;
+*) 	echo DEBIG-OK: da qui in poi proseguiamo con $# parametri ;;
+esac
+
+#Controllo primo parametro (con expr)
+expr $1 + 0  > /dev/null 2>&1
+N1=$?
+if test $N1 -ne 2 -a $N1 -ne 3
+then 	#echo numerico $1 siamo sicuri che numerico
+     	if test $1 -le 0
+     	then 	echo $1 non positivo
+          	exit 2
+     	fi
+else
+  	echo $1 non numerico
+  	exit 3
+fi
+
+X=$1 #salviamo il primo parametro
+#quindi ora possiamo usare il comando shift
+shift
+
+#ora in $* abbiamo solo i nomi delle gerarchie e quindi possiamo fare i controlli sui nomi assoluti e sulle directory in un for
+for i 
+do
+	case $i in
+	/*) if test ! -d $i -o ! -x $i
+	    then
+	    echo $i non directory o non traversabile
+	    exit 4
+	    fi;;
+	*)  echo $i non nome assoluto; exit 5;;
+	esac
+done
+
+#controlli sui parametri finiti possiamo passare alle N fasi
+PATH=`pwd`:$PATH
+export PATH
+> /tmp/conta$$ #creiamo/azzeriamo il file temporaneo. NOTA BENE: SOLO 1 file temporaneo!
+
+for i
+do
+	echo fase per $i 
+	#invochiamo il file comandi ricorsivo con la gerarchia, il numero e il file temporaneo
+	FCR.sh $i $X /tmp/conta$$   
+done
+
+#terminate tutte le ricerche ricorsive cioe' le N fasi
+#N.B. Andiamo a contare le linee del file /tmp/conta$$
+echo Il numero di file totali che soddisfano la specifica = `wc -l < /tmp/conta$$` 
+for i in `cat /tmp/conta$$`
+do
+	#Stampiamo (come richiesto dal testo) i nomi assoluti dei file trovati
+	echo Trovato il file $i
+	#chiediamo all'utente il numero K per ogni file trovato
+	echo -n "Dammi il numero K (strettamente maggiore di 0 e strettamente minore di $X): "
+	read K
+	#Controllo K (sempre con expr, se prima lo abbiamo fatto con expr, altrimenti sempre con case se prima lo abbiamo fatto con case!)
+	expr $K + 0  > /dev/null 2>&1
+	N1=$?
+	if test $N1 -ne 2 -a $N1 -ne 3
+	then 	#echo numerico $K siamo sicuri che numerico
+     		if test $K -le 0 -o $K -ge $X 
+     		then 	echo $K non positivo o non minore di $X 
+			rm /tmp/conta$$ #poiche' stiamo uscendo a causa di un errore, cancelliamo il file temporaneo!
+          		exit 6
+     		fi
+	else
+  		echo $K non numerico
+		rm /tmp/conta$$ #poiche' stiamo uscendo a causa di un errore, cancelliamo il file temporaneo!
+  		exit 7
+	fi
+	#selezioniamo direttamente la $K-esima linea del file corrente
+		head -$K $i | tail -1
+done 
+#da ultimo eliminiamo il file temporaneo
+rm /tmp/conta$$
+```
+## FCR.sh
+```bash
+#!/bin/sh
+#FCR.sh 
+#file comandi ricorsivo che scrive il nome dei file trovati sul file temporaneo 
+#il cui nome e' passato come terzo argomento
+
+cd $1
+#la variabile NG ci serve per il numero di linee trovate dal grep
+NG=
+
+for i in *
+do
+	#controlliamo solo i nomi dei file leggibili!
+	if test -f $i -a -r $i
+	then 	
+		#controlliamo le linee che terminano con il carattere t!
+		NG=`grep 't$' $i | wc -l`
+		#controlliamo che le linee trovate dal grep siano ALMENO X
+		if test $NG -ge $2
+			then
+			#abbiamo trovato un file che soddisfa le specifiche e quindi inseriamo il suo nome assoluto nel file temporaneo
+			echo `pwd`/$i >> $3
+		fi
+	fi
+done
+
+for i in *
+do
+	if test -d $i -a -x $i
+	then
+		#chiamata ricorsiva cui passiamo come primo parametro il nome assoluto della directory 
+		FCR.sh `pwd`/$i $2 $3 
+	fi
+done
+
+```
 # 11/04/2014
 
 La parte in Shell deve prevedere N parametri: (con N maggiore o uguale a 2) devono essere nomi assoluti di
