@@ -1,9 +1,9 @@
 # Sistemi Operativi
 
 ## Prima Parte
-Pdf con tutte le prove parziali passate con commenti e tag relativi alle specificità dell'esercizio.
-Pdf con i comandi principali con descrizione e eventuali flag.
-ScriptGerarchie è una utility per creare gerarchie di cartelle e file comodamente in un solo comando.
+- Pdf con tutte le prove parziali passate con commenti e tag relativi alle specificità dell'esercizio.
+- Pdf con i comandi principali con descrizione e eventuali flag.
+- ScriptGerarchie è una utility per creare gerarchie di cartelle e file comodamente in un solo comando.
 
 ## Seconda parte
 TBD
