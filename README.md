@@ -1,16 +1,9 @@
 # Sistemi Operativi
 
 ## Prima Parte
-Aggiungere prove passate(preferibilmente **parziali** e non totali) con la seguente struttura:
-
-+ Data gg/mm/yyyy
-+ Descrizione completa con note ed eventuali evidenziazioni del testo
-+ FCP.sh in blocco di testo bash
-+ FCR.sh in blocco di testo bash
-+ Tag ossia parole chiave che possono tornare utili per trovare
-quella prova usando CTRL-F durante l'esame(es. for, controllo file vuoto, controllo stretto 2 parametri)
-
-L'importante è tenere il markdown aggiornato, si può sempre convertire il .md in PDF con il comando sotto da Linux:
+Pdf con tutte le prove parziali passate con commenti e tag relativi alle specificità dell'esercizio.
+Pdf con i comandi principali con descrizione e eventuali flag.
+ScriptGerarchie è una utility per creare gerarchie di cartelle e file comodamente in un solo comando.
 
 ## Seconda parte
 TBD
