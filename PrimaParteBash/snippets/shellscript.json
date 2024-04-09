@@ -247,5 +247,17 @@
 			"#salviamo il parametro: il nome della variabile da usare era specificato nel testo",
 			"C=\\$$1"
 		]
+	},
+	"ricorsione" :{
+		"prefix": "ricorsione",
+		"body": [
+			"for $f in *",
+			"do",
+			"\tif test -d \\$$f -a -x \\$$f",
+			"\tthen",
+			"\t\tFCR.sh #parametri della chiamata ricorsiva",
+			"\tfi",
+			"done"
+		]
 	}
 }
