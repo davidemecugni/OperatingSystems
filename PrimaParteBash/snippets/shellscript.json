@@ -231,7 +231,7 @@
 		"prefix": "stringa",
 		"body": [
 			"case \\$$i in",
-			"*/*)\techo Errore: \\$$i non deve contenere il carattere \/",
+			"*/*)\techo Errore: \\$$i non deve contenere il carattere \\/",
 			"\t\texit 1;;",
 			"esac",
 			"S=\\$$i # nome specificato nel testo"
