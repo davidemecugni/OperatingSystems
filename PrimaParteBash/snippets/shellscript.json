@@ -67,7 +67,7 @@
 		"prefix": "temporaneo",
 		"body": [
 			"# creo un file temporaneo",
-			">tmp/tmp$$",
+			"> /tmp/tmp$$",
 			"\n\n\n\n\n\n\n\n\n\n\n\n\n",
 			"#cancello il file temporaneo",
 			"rm /tmp/tmp$$"
