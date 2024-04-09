@@ -204,7 +204,42 @@
 	"prima riga": {
 		"prefix": "prima",
 		"body": [
-			"#!/bin/sh"
+			"#!/bin/sh",
+			"#File ${TM_FILENAME}",
+			"$1"
+		]
+	},
+	"Leggi risposta": {
+		"prefix": "risposta",
+		"body": [
+			"echo ",
+    		"read $1risposta",
+			"",
+    		"case \\$$1risposta in",
+    		"s*|S*|y*|Y*);;",
+    		"*)\t;;",
+    		"esac"
+		]
+	},
+	"stringa": {
+		"prefix": "stringa",
+		"body": [
+			"case \\$$i in",
+			"*/*)\techo Errore: \\$$i non deve contenere il carattere \/",
+			"\t\texit 1;;",
+			"esac",
+			"S=\\$$i # nome specificato nel testo"
+		]
+	},
+	"singolo carattere":{
+		"prefix": "singoloC",
+		"body": [
+			"case \\$$1 in",
+			"?)\techo DEBUG-OK: primo parametro;;",
+			"*)\techo \\$$1 non singolo carattere; exit 2",
+			"esac",
+			"#salviamo il parametro: il nome della variabile da usare era specificato nel testo",
+			"C=\\$$1"
 		]
 	}
 }
