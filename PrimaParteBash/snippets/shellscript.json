@@ -168,6 +168,12 @@
 			"fi"
 		]
 	},
+	"incrementa" :{
+		"prefix": "incrementa",
+		"body": [
+			"$var=`expr \\$$var + 1`"
+		]
+	},
 
 	
 	"backtick": {
