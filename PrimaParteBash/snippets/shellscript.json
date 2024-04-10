@@ -4,7 +4,7 @@
 		"body": [
 			"# controllo il numero dei parametri",
 			"case $# in",
-			"0|1) echo ERROR: numero di paramtri non accettabile",
+			"0|1$1) echo ERROR: numero di paramtri non accettabile",
 			"\t exit 1;;",
 			"*)echo DEBUG-OK: numero di parametri corretto;;",
 			"esac"
@@ -14,44 +14,44 @@
 		"prefix": "assoluto",
 		"body": [
 			"case \\$$i in",
-			"/*) ;;",
-			"*) ;;",
+			"/*) $1;;",
+			"*) $2;;",
 			"esac"
 		]
 	},
 	"controlla file": {
 		"prefix": "file",
 		"body": [
-			"if test -f \\$$i -a -x \\$$i",
+			"if test -f \\$${1:i} -a -x \\$${1:i}",
 			"then",
-			"\t",
+			"\t$2",
 			"fi"
 		]
 	},
 	"controlla non file": {
 		"prefix": "nfile",
 		"body": [
-			"if test ! -f \\$$i -o ! -x \\$$i",
+			"if test ! -f \\$${1:i} -o ! -x \\$${1:i}",
 			"then",
-			"\t",
+			"\t$2",
 			"fi"
 		]
 	},
 	"controlla cartella": {
 		"prefix": "cartella",
 		"body": [
-			"if test -d \\$$i -a -x \\$$i",
+			"if test -d \\$${1:i} -a -x \\$${1:i}",
 			"then",
-			"\t",
+			"\t$2",
 			"fi"
 		]
 	},
 	"controlla non cartella": {
 		"prefix": "ncartella",
 		"body": [
-			"if test ! -d \\$$i -o ! -x \\$$i",
+			"if test ! -d \\$${1:i} -o ! -x \\$${1:i}",
 			"then",
-			"\t",
+			"\t$2",
 			"fi"
 		]
 	},
@@ -178,14 +178,14 @@
 	
 	"backtick": {
 		"prefix": "backtick",
-		"body": "``"
+		"body": "`$1`"
 	},
 	"if": {
 		"prefix": "if",
 		"body": [
 			"if test",
 			"then",
-			"\t",
+			"\t$1",
 			"fi"
 		]
 	},
@@ -194,7 +194,7 @@
 		"body": [
 			"for i",
 			"do",
-			"\t",
+			"\t$1",
 			"done"
 		]
 	},
@@ -202,8 +202,8 @@
 		"prefix": "case",
 		"body": [
 			"case \\$var in",
-			");;",
-			"*);;",
+			")$1;;",
+			"*)$2;;",
 			"esac"
 		]
 	},
@@ -219,9 +219,9 @@
 		"prefix": "risposta",
 		"body": [
 			"echo ",
-    		"read $1risposta",
+    		"read ${1:risposta}",
 			"",
-    		"case \\$$1risposta in",
+    		"case \\${1:risposta} in",
     		"s*|S*|y*|Y*);;",
     		"*)\t;;",
     		"esac"
