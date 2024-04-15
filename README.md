@@ -1,14 +1,14 @@
-# Sistemi Operativi
+# Operating Systems
 
-## Prima Parte
-- Pdf con tutte le prove parziali passate con commenti e tag relativi alle specificità dell'esercizio.
-- Pdf con i comandi principali con descrizione e eventuali flag.
-- ScriptGerarchie è una utility per creare gerarchie di cartelle e file comodamente in un solo comando.
+## First part
+- PDF with all past midterm exams with description and solution provided by prof. Letizia Leonardi
+- PDF with main Bash commands taught during the lessons
+- ScriptGerarchie is an utility to make a tree of folders and files to test recursive programs
 
 ## Seconda parte
 TBD
 
-### Da .md a .pdf
+### From .md to .pdf
 ```console
 sudo apt install npm
 sudo npm install -g pretty-markdown-pdf
