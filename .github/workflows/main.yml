@@ -2,6 +2,13 @@ name: Pretty MD to PDF
 
 on:
   push:
+    branches:
+      - main
+    paths:
+      - '**.md' # Trigger on any changes to markdown files
+  pull_request:
+    branches:
+      - main
     paths:
       - '**.md' # Trigger on any changes to markdown files
 
@@ -19,4 +26,4 @@ jobs:
       run: sudo npm install -g pretty-markdown-pdf
       
     - name: Run pretty-md-pdf
-      run: pretty-md-pdf -i ${{ github.workspace }}
+      run: find . -type f -name "*.md" -print0 | xargs -0 -n1 pretty-md-pdf -i 
