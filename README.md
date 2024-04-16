@@ -1,4 +1,5 @@
 # Operating Systems
+This repository contains all the material for the Operating Systems course at University of Modena in the Computer Science Engineering course, held by prof. Letizia Leonardi.
 
 ## First part
 - PDF with all past midterm exams with description and solution provided by prof. Letizia Leonardi
