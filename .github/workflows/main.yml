@@ -12,9 +12,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+    - name: Install npm
+      run: sudo apt install npm
+    
     - name: Install dependencies
-      run: npm install -g pretty-md-pdf
-
+      run: sudo npm install -g pretty-markdown-pdf
+      
     - name: Run pretty-md-pdf
       run: pretty-md-pdf -i ${{ github.workspace }}
