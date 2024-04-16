@@ -1,0 +1,20 @@
+name: Pretty MD to PDF
+
+on:
+  push:
+    paths:
+      - '**.md' # Trigger on any changes to markdown files
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install -g pretty-md-pdf
+
+    - name: Run pretty-md-pdf
+      run: pretty-md-pdf -i ${{ github.workspace }}
