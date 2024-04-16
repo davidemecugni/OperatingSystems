@@ -24,6 +24,13 @@
     
     ```bash
     cd dir
+    #mi sposto in dir
+    
+    cd
+    #mi sposto nella home directory
+    
+    cd ..
+    #mi sposto nella directory precedente
     ```
     
 - pwd
@@ -39,7 +46,26 @@
     Mostra l’elenco dei file/directory
     
     ```bash
-    ls [dir/file]
+    ls
+    #mostra elenco file/dir della dir corrente
+    
+    ls -l
+    #Elencare i file e le directory con dettagli completi
+    
+    ls -a
+    #mostrare i file nascosti
+    
+    ls -t
+    #ordinare i file per data di modifica
+    
+    ls -r
+    #ordinare i file in ordine inverso
+    
+    ls -d */
+    #elenca solo directory
+    
+    ls -F
+    #visualizza il tipo di file
     ```
     
 - cp
@@ -48,6 +74,13 @@
     
     ```bash
     cp Src Dst
+    #copio SRC in DST
+    
+    cp -r dir1 dir2
+    #copio tutti i file di dir1 in dir2
+    
+    cp -i SRC DST
+    #mostrare messaggio di conferma durante la copiatura
     ```
     
 - ln
@@ -95,7 +128,7 @@
     Il comando `cat` (abbreviazione di concatenate) è utilizzato per leggere, creare e concatenare file. Stampa il contenuto di uno o più file sulla shell.
     
     ```bash
-    # Legge il contenuto di un file
+    # Legge e stampa il contenuto di un file
     cat file
     
     # Crea un nuovo file e digita il contenuto
@@ -179,6 +212,9 @@
     sh
     #se voglio eseguire un file .sh senza usare prima chmod
     sh file.sh
+    
+    sh -x
+    #entro nella shell in modalità debug
     ```
     
 - bash
@@ -254,17 +290,7 @@
     ```bash
     logout
     ```
-
-- echo    
-    Stampa un messaggio sulla shell
     
-    ```bash
-    echo "Hello, World!"
-    ```
-
-    Opzioni:
-    - `-n`: non stampa il carattere di nuova riga alla fine del messaggio(utile per input dall'utente)
-
 - exit
     
     Per uscire dalla shell e interrompere il processo
@@ -282,7 +308,7 @@
     
 - tee
     
-    Legge l'input standard e lo scrive sia sullo standard output che in uno o più file.
+    Il comando tee in Unix/Linux legge l'input dalla standard input (solitamente da un altro comando o da un file) e lo scrive sia sulla standard output (solitamente il terminale) che su uno o più file specificati come argomenti.
     
     ```bash
     echo 'ciao' | tee file.txt
@@ -809,3 +835,20 @@
     ```
     
     In questo esempio, se la variabile `stringa` è vuota, verrà stampato "La stringa è vuota.". Se la variabile `stringa` non è vuota, verrà stampato "La stringa non è vuota.".
+    
+
+**Redirezione**
+
+```bash
+#redirezione standard input
+comando < file
+
+#redirezione standard output
+comando > file
+
+#redirezione standard output con append
+comando >> file
+
+#redirezione standard error
+comando > /dev/null 2>&1
+```
