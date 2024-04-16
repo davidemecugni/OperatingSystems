@@ -175,6 +175,15 @@ NOTA BENE NEI DUE FILE COMANDI SI USI OBBLIGATORIAMENTE:
 che ha estensione/terminazione .txt
 ** Ad esempio Letizia per Letizia Leonardi o Silvia per Silvia Cascianelli!
 
+## FCP.sh
+```bash
+#!/bin/sh
+```
+## FCR.sh
+```bash
+#!/bin/sh
+```
+
 # 13/04/2022
 La parte in Shell deve prevedere un numero variabile di parametri Q+1 (con Q maggiore o uguale a 2): il
 primo parametro deve essere considerato un numero intero strettamente positivo (X), mentre gli altri Q
