@@ -19,11 +19,33 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Install npm
-      run: sudo apt install npm
-    
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
     - name: Install dependencies
-      run: sudo npm install -g pretty-markdown-pdf
-      
+      run: npm install -g pretty-md-pdf
+
     - name: Run pretty-md-pdf
-      run: find . -type f -name "*.md" -print0 | xargs -0 -n1 pretty-md-pdf -i 
+      run: |
+        find . -type f -name "*.md" ! -name "README.md" -print0 | xargs -0 -n1 pretty-md-pdf -i
+
+
+        
+    - name: switching from HTTPS to SSH
+      run: git remote set-url origin ${{ secrets.ssh }}
+    - name: check for changes
+      run: git status
+    - name: stage changed files
+      run: git add .
+    - name: commit changed files
+      run: git commit -m "Auto updating pdfs"
+    - name: fetch from master
+      run: git fetch origin master
+    - name: push code to master
+      run: git push origin HEAD:master
