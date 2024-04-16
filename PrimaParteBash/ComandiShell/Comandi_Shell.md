@@ -780,6 +780,9 @@
     
     # Verifica se il file è eseguibile
     test -x file
+
+    # Verifica se il file è vuoto
+    test -s file
     
     # Verifica se la stringa è vuota
     test -z stringa
