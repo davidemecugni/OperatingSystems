@@ -162,7 +162,7 @@ sia il nome del file leggibile con estensione S1 sia il nome del file leggibile 
 corrispondente al numero X fornito e di tali due file si deve riportare su standard output il nome assoluto.
 NOTA BENE NEI DUE FILE COMANDI SI USI OBBLIGATORIAMENTE:
 - una variabile di nome **S1** per contenere il primo parametro di FCP.sh;
-- una variabile di nome **S2**per contenere il secondo parametro di FCP.sh;
+- una variabile di nome **S2** per contenere il secondo parametro di FCP.sh;
 - la stringa **/tmp/nomiAssoluti** per la parte iniziale dei nomi dei file temporanei
 - una variabile di nome **G** per le singole gerarchie di ognuna delle Q fasi;
 - una variabile di nome **F*** per identificare, via via, i singoli file delle directory esplorate;
@@ -178,10 +178,151 @@ che ha estensione/terminazione .txt
 ## FCP.sh
 ```bash
 #!/bin/sh
+# Davide Mecugni
+#File FPC.sh
+
+# Controllo il numero dei parametri
+case $# in
+0|1|2|3) echo "ERROR: numero di parametri non accettabile: $#"
+     exit 1;;
+*)echo DEBUG-OK: numero di parametri corretto;;
+esac
+
+S1=$1
+S2=$2
+# Controllo che la barra non sia tra i caratteri della stringa
+case $S1 in
+*/*)	echo Errore: "$S1" non deve contenere il carattere /
+        exit 1;;
+esac
+
+
+# Controllo che la barra non sia tra i caratteri della stringa
+case $S2 in
+*/*)	echo Errore: "$S2" non deve contenere il carattere /
+        exit 1;;
+esac
+
+#Shifto $1 e $2 cosi da avere la lista di gerarchie in $*
+shift
+shift
+
+for i in $*
+do
+    if test ! -d "$i" -o ! -x "$i"
+    then
+        echo "$i" non e\' una cartella
+        exit 2
+    fi
+done
+
+echo DEBUG-OK: parametri corretti
+
+# aggiugo la directory corrente al path e la esporto
+# shellcheck disable=SC2006
+PATH=`pwd`:$PATH
+export PATH
+
+fileS1="/tmp/nomiAssoluti-S1"
+fileS2="/tmp/nomiAssoluti-S2"
+true > $fileS1
+true > $fileS2
+
+for G in $*
+do
+    FCR.sh "$G" "$fileS1" "$fileS2" "$S1" "$S2"
+done
+
+#Salvo il numero di file trovati per ogni estensione
+TOT1=`wc -l < $fileS1`
+TOT2=`wc -l < $fileS1`
+
+
+#Se non corrisponde al controllo richiesto
+if test "$TOT1" -gt "$TOT2" -o "$TOT1" -lt 1
+then
+    echo File che hanno estensione S1 sono di più di file con estensione S2, oppure non ho trovato file con S1 estensione, esco
+    exit 0 #Ho lasciato zero perché nel testo non viene specificato sia un errore
+fi
+
+# Pongo domanda e reagisco ad ogni input che possa essere simile a si, yes
+echo "Ciao Davide, inserisci un numero intero tra 1 e $TOT1"
+read -r X
+
+# Controllo se il parametro e' un numero positivo
+case $X in
+  *[!0-9]*) echo "$X non numerico o non positivo "; exit 3;;
+  *)
+    if test "$X" -gt 0 -a "$X" -le "$TOT1"
+    then
+      echo "E' un numero positivo nel range: $X";
+    else
+      echo "E' un numero non nel range 1 - $TOT1";
+      exit 4;
+    fi
+    ;;
+esac
+
+#Uso -n come usato dalla prof. anche se da comportamento undefined sotto POSIX
+echo -n "L'$X-esimo file con estensione S1 e': "
+head -n "$X" "$fileS1" | tail -n 1
+echo -n "L'$X-esimo file con estensione S1 e': "
+head -n "$X" "$fileS2" | tail -n 1
+
+#Rimuovo file temporanei
+rm $fileS1 $fileS2
 ```
 ## FCR.sh
 ```bash
 #!/bin/sh
+# Davide Mecugni
+#File FCR.sh
+
+cartella=$1
+fileS1=$2
+fileS2=$3
+S1=$4
+S2=$5
+
+#Entro nella cartella o ritorno 0 se non esiste
+cd "$cartella" || exit 1;
+
+for F in *
+do
+    # Controllo se e' un file e se e leggibile
+    if test -f $F -a -r $F
+    then
+        #Ottengo l'estensione del file ossia tutti i caratteri(compreso il punto) dopo l'ultimo punto
+        extension=$(echo "$F" | grep -o '\.[^.]*$')
+        #Se e' della prima estensione lo salvo nel file temporaneo corrispondente
+        echo $extension
+        if test "$extension" = ".$S1"
+        then
+            #Salvo il nome assoluto in append
+            echo "`pwd`/$F"
+            echo "`pwd`/$F" >> "$fileS1"
+        fi
+        #Se e' della seconda estensione lo salvo nel file temporaneo corrispondente
+        if test "$extension" = ".$S2"
+        then
+            #Salvo il nome assoluto in append
+            echo "`pwd`/$F" >> "$fileS2"
+        else 
+        echo "$F non ha nessuna estensione contemplata" 
+        fi
+    fi
+done
+
+#Ricorsione sulle cartelle presenti nella cartella corrente
+#Per ogni file nella cartella presente
+for F in *
+do
+    #Se il file e' una cartella ed e' attraversabile
+    if test -d "$F" -a -x "$F"
+    then
+        FCR.sh "$F" "$S1" "$S2"
+    fi
+done
 ```
 
 # 13/04/2022
