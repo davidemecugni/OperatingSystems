@@ -31,6 +31,9 @@
     
     cd ..
     #mi sposto nella directory precedente
+    
+    cd ../..
+    #per spostarsi all'indietro di 2 livelli
     ```
     
 - pwd
@@ -729,6 +732,8 @@
     # Cerca tutte le linee che non contengono numeri
     grep -v '[0-9]' file
     
+    # Cerca tutte le linee che contengono solo minuscole
+    grep -o '^[a-z]*$' file
     ```
     
 - sort
@@ -835,6 +840,50 @@
     ```
     
     In questo esempio, se la variabile `stringa` è vuota, verrà stampato "La stringa è vuota.". Se la variabile `stringa` non è vuota, verrà stampato "La stringa non è vuota.".
+    
+- wc
+    
+    ```bash
+    wc [-lwc] [file]
+    ```
+    
+    Conta linee, parole e caratteri di un file o dello stdinput
+    
+- find
+    
+    ```bash
+    find dir -name file
+    ```
+    
+    Riporta i nomi assoluti dei file di cui viene fornito il nome a partire dalla directory specificata
+    
+- man
+    
+    ```bash
+    man comando
+    ```
+    
+    Apre il manual (help) del comando
+    
+- date
+    
+    Fornisce data e orario corrente del sistema
+    
+- which
+    
+    ```bash
+    which comando
+    ```
+    
+    Riporta nome assoluto comando
+    
+- whereis
+    
+    ```bash
+    whereis comando
+    ```
+    
+    Fornisce informazioni su dove si trova il comando e del suo manuale
     
 
 **Redirezione**
