@@ -2,7 +2,7 @@
 
 ---
 
-Importa `#include <unistd>`
+Importa `#include <unistd.h>`
 
 Importa `#include <fcntl.h>`
 
@@ -18,7 +18,7 @@ Importa `#include <fcntl.h>`
     //mode espresso in ottale come in chmod 110-001-001 = 611
     ```
     
-    Crea un file di nome `name` e diritti `mode` , se il file esiste lo azzera, si deve avere diritto di scrittura.
+    Crea un file di nome `name` e diritti `mode` , se il file esiste lo azzera(mode non ha effetto, rimangono i diritti precedenti), si deve avere diritto di scrittura.
     
 - `open()`
     
@@ -76,6 +76,8 @@ Importa `#include <fcntl.h>`
     Parte dalla posizione corrente e restituisce il nr di byte su cui ha lavorato, esempio: se il FP è su EOF read() restituisce 0.
     
     Tenta di leggere `n` byte e i caratteri vengono inseriti in `buffer` e `nread` sono i byte effettivamente letti.
+
+    Si è verificato un problema nel momento in cui `nread` != `n`
     
 - `write()`
     
@@ -104,6 +106,7 @@ Importa `#include <fcntl.h>`
     sposta il FP all’interno del file `fd` di `offset` byte a partire da `origin`  → in `<unistd.h>` si possono usare `SEEK_SET` (inizio), `SEEK_CUR` (corrente), `SEEK_END` (fine).
     
     `offset` può essere sia positivo che negativo, il valore di ritorno rappresenta la posizione corrente del FP.
+    (Se ci si posiziona all'esterno del file non vengono segnalati errori)
     
     ad esempio per tornare all’inizio:
     
@@ -208,6 +211,10 @@ Importa `#include <fcntl.h>`
     - PARENT → ≠ 0 → restituisce il PID creato
     
     Questo consente ai 2 processi di eseguire azioni diverse sullo stesso codice
+
+    Essendo copiate le aree dati utente e kernel, sono copiati anche i file nella tabella dei file aperti, per cui è condiviso
+    L'I/O pointer. Ciò significa che in caso di spostamenti da parte di un processo, il cursore si troverà nella nuova posizione anche per il
+    processo parent.
     
     es:
     
