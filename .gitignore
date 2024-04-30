@@ -11,10 +11,3 @@
 !*/*makefile
 !*/*.sh
 !*/*.png
-
-# Visual Studio Code
-.vscode
-
-# macOS
-.DS_Store
-
