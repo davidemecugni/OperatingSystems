@@ -1,0 +1,20 @@
+# C
+*/*         #ignore all files in each directory
+!*/*.c      #unignore .c files in each directory
+!*/*.h      #unignore .h header files in each directory
+!.gitignore #unignore .gitignore
+!*/*.json
+!*/*.pdf
+!*/*.md
+!*/*.txt
+!LICENSE
+!*/*makefile
+!*/*.sh
+!*/*.png
+
+# Visual Studio Code
+.vscode
+
+# macOS
+.DS_Store
+

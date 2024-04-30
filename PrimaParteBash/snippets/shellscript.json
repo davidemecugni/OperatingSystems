@@ -1,0 +1,263 @@
+{
+	"controlla parametri": {
+		"prefix": "paramentri",
+		"body": [
+			"# controllo il numero dei parametri",
+			"case $# in",
+			"0|1$1) echo ERROR: numero di paramtri non accettabile",
+			"\t exit 1;;",
+			"*)echo DEBUG-OK: numero di parametri corretto;;",
+			"esac"
+		]
+	},
+	"controlla percorso assoluto": {
+		"prefix": "assoluto",
+		"body": [
+			"case \\$$i in",
+			"/*) $1;;",
+			"*) $2;;",
+			"esac"
+		]
+	},
+	"controlla file": {
+		"prefix": "file",
+		"body": [
+			"if test -f \\$${1:i} -a -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla non file": {
+		"prefix": "nfile",
+		"body": [
+			"if test ! -f \\$${1:i} -o ! -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla cartella": {
+		"prefix": "cartella",
+		"body": [
+			"if test -d \\$${1:i} -a -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla non cartella": {
+		"prefix": "ncartella",
+		"body": [
+			"if test ! -d \\$${1:i} -o ! -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"esporta PATH": {
+		"prefix": "esporta",
+		"body": [
+			"# aggiugo la directory corrente al path e la esporto",
+			"PATH=`pwd`:\\$PATH",
+			"export PATH"
+		]
+	},
+	"crea file temporaneo": {
+		"prefix": "temporaneo",
+		"body": [
+			"# creo un file temporaneo",
+			"> /tmp/tmp$$",
+			"\n\n\n\n\n\n\n\n\n\n\n\n\n",
+			"#cancello il file temporaneo",
+			"rm /tmp/tmp$$"
+		]
+	},
+	"esci del programma": {
+		"prefix": "exit",
+		"body": [
+			"exit 1"
+		]
+	},
+	"debug error": {
+		"prefix": "error",
+		"body": [
+			"echo ERROR:"
+		]
+	},
+	"debug ok": {
+		"prefix": "ok",
+		"body": [
+			"echo DEBUG-OK:"
+		]
+	},
+	"ultimo parametro speciale": {
+		"prefix": "ultimo",
+		"body": [
+			"couter=1",
+			"params=",
+			"",
+			"for i",
+			"do",
+			"\tif test \\$counter -ne \\$# # serve per non considerare l'ultimo parametro",
+			"\tthen",
+			"",
+			"\t\tparams=\"\\$params \\$i\" # se i controlli sono andati bene memorizzo il nome nella lista params",
+			"\telse",
+			"",
+			"\t\tX=\\$i # se i controlli sono andati bene salvo l'ultimo parametro",
+			"\tfi",
+			"\tcounter=`expr \\$counter + 1` #incremento il contatore del ciclo sui parametri",
+			"done",
+			"",
+			"for i in \\$params",
+			"do",
+			"\techo fase per \\$i",
+			"\t# invoco il file ricorsivo",
+			"",
+			"done"
+		]
+	},
+	"strettamente spositivo": {
+		"prefix": "spositivo",
+		"body": [
+			"expr \\$$i + 0  > /dev/null 2>&1",
+			"N1=$?",
+			"if test \\$N1 -ne 2 -a \\$N1 -ne 3",
+			"then # in questo caso è certamente numerico",
+			"\tif test \\$$i -le 0 # controllo che il numero sia positivo",
+			"\tthen",
+			"\t\techo ERROR: \\$$i non strettamente positivo",
+			"\t\texit 1",
+			"\tfi",
+			"else",
+			"\techo ERROR: \\$$i non numerico",
+			"\texit 1",
+			"fi"
+		]
+	},
+	"positivo": {
+		"prefix": "positivo",
+		"body": [
+			"expr \\$$i + 0  > /dev/null 2>&1",
+			"N1=$?",
+			"if test \\$N1 -ne 2 -a \\$N1 -ne 3",
+			"then # in questo caso è certamente numerico",
+			"\tif test \\$$i -lt 0 # controllo che il numero sia positivo",
+			"\tthen",
+			"\t\techo ERROR: \\$$i non strettamente positivo",
+			"\t\texit 1",
+			"\tfi",
+			"else",
+			"\techo ERROR: \\$$i non numerico",
+			"\texit 1",
+			"fi"
+		]
+	},
+	"numerico": {
+		"prefix": "numerico",
+		"body": [
+			"expr \\$$i + 0  > /dev/null 2>&1",
+			"N1=$?",
+			"if test \\$N1 -ne 2 -a \\$N1 -ne 3",
+			"then # in questo caso è certamente numerico",
+			"    echo DEBUG-OK: \\$$i è numerico",
+			"else",
+			"    echo ERROR: \\$$i non numerico",
+			"    exit 1",
+			"fi"
+		]
+	},
+	"incrementa" :{
+		"prefix": "incrementa",
+		"body": [
+			"$var=`expr \\$$var + 1`"
+		]
+	},
+
+	
+	"backtick": {
+		"prefix": "backtick",
+		"body": "`$1`"
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if test",
+			"then",
+			"\t$1",
+			"fi"
+		]
+	},
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for i",
+			"do",
+			"\t$1",
+			"done"
+		]
+	},
+	"case": {
+		"prefix": "case",
+		"body": [
+			"case \\$var in",
+			")$1;;",
+			"*)$2;;",
+			"esac"
+		]
+	},
+	"prima riga": {
+		"prefix": "prima",
+		"body": [
+			"#!/bin/sh",
+			"#File ${TM_FILENAME}",
+			"$1"
+		]
+	},
+	"Leggi risposta": {
+		"prefix": "risposta",
+		"body": [
+			"echo ",
+    		"read ${1:risposta}",
+			"",
+    		"case \\${1:risposta} in",
+    		"s*|S*|y*|Y*);;",
+    		"*)\t;;",
+    		"esac"
+		]
+	},
+	"stringa": {
+		"prefix": "stringa",
+		"body": [
+			"case \\$$i in",
+			"*/*)\techo Errore: \\$$i non deve contenere il carattere \\/",
+			"\t\texit 1;;",
+			"esac",
+			"S=\\$$i # nome specificato nel testo"
+		]
+	},
+	"singolo carattere":{
+		"prefix": "singoloC",
+		"body": [
+			"case \\$$1 in",
+			"?)\techo DEBUG-OK: primo parametro;;",
+			"*)\techo \\$$1 non singolo carattere; exit 2",
+			"esac",
+			"#salviamo il parametro: il nome della variabile da usare era specificato nel testo",
+			"C=\\$$1"
+		]
+	},
+	"ricorsione" :{
+		"prefix": "ricorsione",
+		"body": [
+			"for $f in *",
+			"do",
+			"\tif test -d \\$$f -a -x \\$$f",
+			"\tthen",
+			"\t\tFCR.sh #parametri della chiamata ricorsiva",
+			"\tfi",
+			"done"
+		]
+	}
+}
