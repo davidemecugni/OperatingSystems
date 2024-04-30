@@ -1,2 +1,0 @@
-# Snippets per gli script shell
-Per utilizzare questi snippets custom su VScode premi `ctrl + shift + P` scrivi nella barra che compare `Snippets` e seleziona l'opzione `Snippets: configure user snippets`, infine selezionando il linguaggio `shellscript` si aprirà il file di configurazione in cui incollare tutti gli snippets
