@@ -12,8 +12,8 @@
 
 #include <time.h> // Per generare il seed di random
 
-int generatoreRandom(){
-    return rand() % 100;
+int generatoreRandom(int n){
+    return rand() % n;
 }
 
 int main(int argc, char const *argv[])
@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
             /* CODICE DEL FIGLIO*/
     
             printf("Figlio, pid: %d, indice %d\n", getpid(), i);
-            exit(generatoreRandom());
+            exit(generatoreRandom(100+i));
     
             /*FINE CODICE DEL FIGLIO*/
         }
@@ -92,10 +92,10 @@ int main(int argc, char const *argv[])
         if (WIFEXITED(status)) {
             //Ricavo l'exitcode del figlio con la funzione WEXITSTATUS
             ritorno = WEXITSTATUS(status);
-            printf("Il figlio e' ritornato con codice: %d\n", ritorno);
+            printf("Il figlio di pid = %d (di indice %d) e' ritornato con codice: %d\n", pidDeiFigli[posizione], posizione, ritorno);
         } else {
             //Lo status riporta una terminazione anomala
-            printf("Il figlio e' terminato in modo anomalo\n");
+            printf("Il figlio di pid = %d (di indice %d) e' terminato in modo anomalo\n", pidDeiFigli[posizione], posizione);
         }
     }
     //Libero la memoria dove ho salvato i PID dei figli
