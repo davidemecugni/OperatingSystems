@@ -81,13 +81,12 @@ Debugging is the process of finding and fixing errors in a program. There are di
 ## In Visual Studio Code
 To debug a C program in Visual Studio Code, you need to install the `C/C++` extension and configure the `launch.json` file.
 
+Since we are using a `Makefile` to compile the program, we need to add the right flags to the `CFLAGS` variable in the `Makefile` to include debugging information. For `gcc`, the flag `-g` is used to include debugging information in the executable. Then we need to configure the `launch.json` file to use the appropriate debugger.
 ```makefile
 ...
 CFLAGS = ... -g ...
 ...
 ```
-
-Since we are using a `Makefile` to compile the program, we need to add the right flags to the `CFLAGS` variable in the `Makefile` to include debugging information. For `gcc`, the flag `-g` is used to include debugging information in the executable. Then we need to configure the `launch.json` file to use the appropriate debugger.
 
 ### Mac OS 
 In this case we will use `lldb` as the debugger.
