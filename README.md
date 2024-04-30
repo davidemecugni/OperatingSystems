@@ -3,23 +3,13 @@ This repository contains all the material for the Operating Systems course at Un
 
 All the material here provided can be used during the exam(up to 2024 at least).
 
-## First part
+## First part: Shell
 - PDF with all past midterm exams with description and solution provided by prof. Letizia Leonardi
-- PDF with Bash commands taught during the lessons
-- TreeScript is an utility to make a tree of folders and files to test recursive programs
-- Snippets of Shell code frequently used in the exams
+- PDF with main Bash commands taught during the lessons
+- ScriptGerarchie is an utility to make a tree of folders and files to test recursive programs
 
-## Second part
-- PDF with all past final exams with description and solution provided by prof. Letizia Leonardi
-- PDF C_primitives with all the C primitives used in the exams
-- Snippets for C(over 4k lines!) with all the functions and patterns used in the exams
-- Snippet for makefile with all possible checks and flags for warnings and errors
-
-### tester.py utility
-This utility tests .sh and .c files for the exams.
-It checks that the exit codes are progressively correct and, for the C part,
-checks the number of memory operations to verify proper handling of exit on
-error conditions.
+## Seconda parte
+TBD
 
 ### From .md to .pdf
 ```console
