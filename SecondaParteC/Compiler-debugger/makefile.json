@@ -1,0 +1,31 @@
+{
+	"Makefile": {
+		"prefix": "makefile",
+		"body": [
+			"CC = gcc",
+			"CFLAGS = -Wall -std=c11",
+			"NAME = ${1:executable}",
+			"SRCS = ${2:source_files}",
+			"OBJS = $(SRCS:.c=.o)",
+			"",
+			"all: $(NAME)",
+			"",
+			"$(NAME): $(OBJS)",
+			"\t$(CC) $(CFLAGS) -o $(NAME) $(OBJS)",
+			"",
+			"%.o: %.c",
+			"\t$(CC) $(CFLAGS) -c $< -o $@",
+			"",
+			"clean:",
+			"\trm -f $(OBJS)",
+			"",
+			"fclean: clean",
+			"\trm -f $(NAME)",
+			"",
+			"re: fclean all",
+			"",
+			".PHONY: all clean fclean re"
+		],
+		"description": "Makefile template"
+	}
+}
