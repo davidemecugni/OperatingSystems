@@ -1,15 +1,25 @@
 # Operating Systems
 This repository contains all the material for the Operating Systems course at University of Modena in the Computer Science Engineering course, held by prof. Letizia Leonardi.
 
-## First part: Shell
+All the material here provided can be used during the exam(up to 2024 at least).
+
+## First part
 - PDF with all past midterm exams with description and solution provided by prof. Letizia Leonardi
-- PDF with main Bash commands taught during the lessons
-- ScriptGerarchie is an utility to make a tree of folders and files to test recursive programs
-- Snippets for fast code completion
-  
-## Second part: C
-- PDF with C functions from std libraries
-- Snippets for fast code completion
+- PDF with Bash commands taught during the lessons
+- TreeScript is an utility to make a tree of folders and files to test recursive programs
+- Snippets of Shell code frequently used in the exams
+
+## Second part
+- PDF with all past final exams with description and solution provided by prof. Letizia Leonardi
+- PDF C_primitives with all the C primitives used in the exams
+- Snippets for C(over 4k lines!) with all the functions and patterns used in the exams
+- Snippet for makefile with all possible checks and flags for warnings and errors
+
+### tester.py utility
+This utility tests .sh and .c files for the exams.
+It checks that the exit codes are progressively correct and, for the C part,
+checks the number of memory operations to verify proper handling of exit on
+error conditions.
 
 ### From .md to .pdf
 ```console

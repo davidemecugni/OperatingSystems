@@ -1,0 +1,419 @@
+{
+	"controlla parametri": {
+		"prefix": "paramentri",
+		"body": [
+			"# Controllo il numero dei parametri",
+			"case $# in",
+			"0|1$1) echo ERROR: numero di parametri non accettabile: $#",
+			"\t exit 1;;",
+			"*)echo DEBUG-OK: numero di parametri corretto;;",
+			"esac"
+		]
+	},
+	"controlla percorso assoluto": {
+		"prefix": "assoluto",
+		"body": [
+			"case ${1:DIR} in",
+			"/*) if test ! -d ${1: DIR} -o ! -x ${1: DIR}",
+			"    then",
+			"    echo ${1: DIR} non directory",
+			"    exit ${2:ERRORE1}",
+			"    fi;;",
+			"*)  echo ${1: DIR} non nome assoluto; exit ${3:ERRORE2};;",
+			"esac"
+		  ]
+	},
+	"controlla file leggibile": {
+		"prefix": "fileleggibile",
+		"body": [
+			"# Controllo se e' un file e se e leggibile",
+			"if test -f \\$${1:i} -a -r \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla non file oppure non leggibile": {
+		"prefix": "nonfile",
+		"body": [
+			"if test ! -f \\$${1:i} -o ! -r \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla non file oppure non leggibile 2": {
+		"prefix": "filenot",
+		"body": [
+			"if test ! -f \\$${1:i} -o ! -r \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla cartella": {
+		"prefix": "cartella",
+		"body": [
+			"if test -d \\$${1:i} -a -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla non cartella": {
+		"prefix": "noncartella",
+		"body": [
+			"if test ! -d \\$${1:i} -o ! -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"controlla non cartella 2": {
+		"prefix": "cartellanot",
+		"body": [
+			"if test ! -d \\$${1:i} -o ! -x \\$${1:i}",
+			"then",
+			"\t$2",
+			"fi"
+		]
+	},
+	"esporta PATH": {
+		"prefix": "esporta",
+		"body": [
+			"# aggiugo la directory corrente al path e la esporto",
+			"PATH=`pwd`:\\$PATH",
+			"export PATH"
+		]
+	},
+	"PATH": {
+		"prefix": "path",
+		"body": [
+			"# aggiugo la directory corrente al path e la esporto",
+			"PATH=`pwd`:\\$PATH",
+			"export PATH"
+		]
+	},
+	"crea file temporaneo": {
+		"prefix": "temporaneo",
+		"body": [
+			"# creo un file temporaneo",
+			"> /tmp/tmp$$",
+			"\n\n\n\n\n\n\n\n\n\n\n\n\n",
+			"#cancello il file temporaneo",
+			"rm /tmp/tmp$$"
+		]
+	},
+	"crea file temporaneo 2": {
+		"prefix": "filetemporaneo",
+		"body": [
+			"# creo un file temporaneo",
+			"> /tmp/tmp$$",
+			"\n\n\n\n\n\n\n\n\n\n\n\n\n",
+			"#cancello il file temporaneo",
+			"rm /tmp/tmp$$"
+		]
+	},
+	"esci del programma": {
+		"prefix": "exit",
+		"body": [
+			"exit $1"
+		]
+	},
+	"debug error": {
+		"prefix": "error",
+		"body": [
+			"echo ERROR:$1"
+		]
+	},
+	"debug ok": {
+		"prefix": "debugok",
+		"body": [
+			"echo DEBUG-OK:$1"
+		]
+	},
+	"ultimo parametro speciale": {
+		"prefix": "ultimoparametro",
+		"body": [
+			"couter=1",
+			"${1:params}=",
+			"",
+			"for i",
+			"do",
+			"\tif test \\$counter -ne \\$# # serve per non considerare l'ultimo parametro",
+			"\tthen",
+			"",
+			"\t\t${1:params}=\"\\$${1:params} \\$i\" # se i controlli sono andati bene memorizzo il nome nella lista ${1:params}",
+			"\telse",
+			"",
+			"\t\tX=\\$i # se i controlli sono andati bene salvo l'ultimo parametro",
+			"\tfi",
+			"\tcounter=`expr \\$counter + 1` #incremento il contatore del ciclo sui parametri",
+			"done",
+			"",
+			"for i in \\$${1:params}",
+			"do",
+			"\techo fase per \\$i",
+			"",
+			"done"
+		]
+	},
+	"parametro ultimo speciale": {
+		"prefix": "parametroultimo",
+		"body": [
+			"couter=1",
+			"${1:params}=",
+			"",
+			"for i",
+			"do",
+			"\tif test \\$counter -ne \\$# # serve per non considerare l'ultimo parametro",
+			"\tthen",
+			"",
+			"\t\t${1:params}=\"\\$${1:params} \\$i\" # se i controlli sono andati bene memorizzo il nome nella lista ${1:params}",
+			"\telse",
+			"",
+			"\t\tX=\\$i # se i controlli sono andati bene salvo l'ultimo parametro",
+			"\tfi",
+			"\tcounter=`expr \\$counter + 1` #incremento il contatore del ciclo sui parametri",
+			"done",
+			"",
+			"for i in \\$${1:params}",
+			"do",
+			"\techo fase per \\$i",
+			"",
+			"done"
+		]
+	},
+	"strettamente positivo": {
+		"prefix": "strettamentepositivo",
+			"body": [
+				"#Controllo che il parametro sia un numero positivo",
+				"case \\$${1:i} in",
+				"  *[!0-9]*) echo \"\\$${1:i} non numerico o non positivo \"; exit ${2:exit};;",
+				"  *)",
+				"    if [ \\$${1:i} -gt 0 ]; then",
+				"      echo \"Il primo parametro è un numero positivo: \\$${1:i}\";",
+				"    else",
+				"      echo \"Il primo parametro non è un numero positivo: \\$${1:i}\";",
+				"      exit ${2:exit};",
+				"    fi",
+				"    ;;",
+				"esac"
+			],
+			"description": "Shell script to check if the first parameter is a positive number"
+	},
+	"positivo": {
+		"prefix": "numeropositivo",
+		"body": [
+		  "# Check if the first parameter is a positive number",
+		  "case ${1:VAR} in",
+		  "    *[!0-9]*) echo \"${1:VAR} non numerico o non positivo \"; exit ${2:EXIT};;",
+		  "    *)",
+		  "    if test ${1:VAR} -gt 0",
+		  "    then",
+		  "        echo DEBUG-OK: Numero positivo ${1:VAR}",
+		  "    else ",
+		  "        echo \"${1:VAR} non maggiore di 0\"",
+		  "        exit ${3:EXIT};",
+		  "    fi",
+		  "    ;;",
+		  "esac"
+		],
+		"description": "positivo"
+	  },
+	"numerico": {
+		"prefix": "numerico",
+		"body": [
+			"expr \\$$i + 0  > /dev/null 2>&1",
+			"N1=$?",
+			"if test \\$N1 -ne 2 -a \\$N1 -ne 3",
+			"then # in questo caso è certamente numerico",
+			"    echo DEBUG-OK: \\$$i è numerico",
+			"else",
+			"    echo ERROR: \\$$i non numerico",
+			"    exit 1",
+			"fi"
+		]
+	},
+	"incrementa" :{
+		"prefix": "incrementa",
+		"body": [
+			"Aggiungo 1",
+			"$var=`expr \\$$var + 1`"
+		]
+	},
+	"piu" :{
+		"prefix": "piuuno",
+		"body": [
+			"Aggiungo 1",
+			"$var=`expr \\$$var + 1`"
+		]
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if test",
+			"then",
+			"\t$1",
+			"fi"
+		]
+	},
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for i",
+			"do",
+			"\t$1",
+			"done"
+		]
+	},
+	"case": {
+		"prefix": "case",
+		"body": [
+			"case \\$var in",
+			")$1;;",
+			"*)$2;;",
+			"esac"
+		]
+	},
+	"prima riga": {
+		"prefix": "primariga",
+		"body": [
+			"#!/bin/sh",
+			"#YOUR NAME",
+			"#File ${TM_FILENAME}",
+			"$1"
+		]
+	},
+	"Leggi risposta": {
+		"prefix": "domanda",
+		"body": [
+			"# Pongo domanda e reagisco ad ogni input che possa essere simile a si, yes",
+			"echo ${1:domanda}",
+    		"read $i",
+			"",
+    		"case \\$$i in",
+    		"s*|S*|y*|Y*);;",
+    		"*)\t;;",
+    		"esac"
+		]
+	},
+	"stringa": {
+		"prefix": "stringa",
+		"body": [
+			"# Controllo che la barra non sia tra i caratteri della stringa",
+			"case \\$$i in",
+			"*/*)\techo Errore: \"\\$$i\" non deve contenere il carattere \/",
+			"\t\texit 1;;",
+			"esac",
+			"S=\\$$i # nome specificato nel testo"
+		]
+	},
+	"singolo carattere":{
+		"prefix": "singolocarattere",
+		"body": [
+			"# Controllo che ${1:carattere} sia un carattere",
+			"case \\$${1:carattere} in",
+			"?)\techo DEBUG-OK: primo parametro;;",
+			"*)\techo \\$${1:carattere} non singolo carattere; exit ${2:numerouscita} ;;",
+			"esac",
+			"#salviamo il parametro: il nome della variabile da usare era specificato nel testo",
+			"C=\\$$1"
+		]
+	},
+	"ricorsione" :{
+		"prefix": "ricorsione",
+		"body": [
+			"#Ricorsione sulle cartelle presenti nella cartella corrente",
+			"#Per ogni file nella cartella presente",
+			"for $f in *",
+			"do",
+			"#Se il file e' una cartella ed e' attraversabile",
+			"\tif test -d \\$$f -a -x \\$$f",
+			"\tthen",
+			"\t\tFCR.sh `pwd`/$$f#parametri della chiamata ricorsiva",
+			"\tfi",
+			"done"
+		]
+	},
+	"appendi stringa":{
+		"prefix": "appendi",
+		"body": [
+			"# Aggiungo $i a ${1:stringa}",
+			"${1:stringa}=\"\\$${1:stringa} \\$$i\""
+		]
+	},
+	"n-esima riga":{
+		"prefix": "nesimariga",
+		"body": [
+			"lineread=$(head -n \"\\$${1:numeroriga}\" \"\\$${2:nomefile}\" | tail -n 1)"
+		]
+	},
+	"riga":{
+		"prefix": "riga",
+		"body": [
+			"lineread=$(head -n \"\\$${1:numeroriga}\" \"\\$${2:nomefile}\" | tail -n 1)"
+		]
+	},
+	"Carattere in un file": {
+		"prefix": "carattereInUnFile",
+		"body": [
+		  "# Usa grep per cercare il carattere",
+		  "if grep -q \"$char\" \"$file\"; then",
+		  "    echo \"Il carattere '$char' è presente nel file.\"",
+		  "else",
+		  "    echo \"Il carattere '$char' non è presente nel file.\"",
+		  "fi"
+		],
+		"description": "Carattere in un file"
+	  },
+	  "Controllo cartella": {
+		"prefix": "controlloCartella",
+		"body": [
+		  "# Controllo cartella in forma assoluta e traversabile",
+		  "case $i in",
+		  "/*)     if test ! -d $i -o ! -x $i",
+		  "        then",
+		  "        echo ERRORE \\$i non directory o non attraversabile",
+		  "        exit EXITNUMBER",
+		  "        fi;;",
+		  "*)      echo ERRORE \\$i non nome assoluto; exit EXITNUMBER;;",
+		  "esac"
+		],
+		"description": "Controllo cartella"
+	  },
+	  "controllo directory assolute": {
+		"prefix": "controlloDirectory",
+		"body": [
+		  "for G",
+		  "do",
+		  "        case $G in",
+		  "        /*) if test ! -d $G -o ! -x $G",
+		  "            then",
+		  "            echo $G non directory",
+		  "            exit 5",
+		  "            fi;;",
+		  "        *)  echo $G non nome assoluto; exit 6;;",
+		  "        esac",
+		  "done"
+		],
+		"description": "controllo directory assolute"
+	  },
+	  "Calcolo totale file nel temporaneo": {
+		"prefix": "totaleFileNelTemporaneo",
+		"body": [
+		  "echo Il numero totale di direttori trovati nella gerarchia = `wc -l < $fileTemp`"
+		],
+		"description": "Calcolo totale file nel temporaneo"
+	  },
+	  "controllo file non vuoto": {
+		"prefix": "fileNonVuoto",
+		"body": [
+		  "if test `wc -c < $F` -ne 0",
+		  "then ",
+		  "    #RESTO",
+		  "fi"
+		],
+		"description": "controllo file non vuoto"
+	  }
+}
