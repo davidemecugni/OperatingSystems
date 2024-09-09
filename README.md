@@ -2,7 +2,7 @@
 This repository contains all the material for the Operating Systems course at University of Modena in the Computer Science Engineering course, held by prof. Letizia Leonardi.
 
 All the material here provided can be used during the exam(up to 2024 at least).
-
+Exam passed with 27/30, my solution is provided in a subfolder.
 ## First part: Shell
 - PDF with all past midterm exams with description and solution provided by prof. Letizia Leonardi
 - PDF with Bash commands taught during the lessons
